@@ -101,6 +101,7 @@
   .w182{width:182px}
   .w186{width:186px}
   .w192{width:192px}
+  .w238{width:238px}
   .w250{width:250px}
   .w298{width:298px}
   .w409{width:409px}
@@ -190,10 +191,10 @@
         </tr>
         <tr class="cp h12 At rBb">
 			<td><%= boleto['cedente'] %></td>
-			<td><%= boleto['agencia'] %>/<%= boleto['codigo_cedente'] %></td>
+			<td><%= boleto['agencia'] %>-3/<%= boleto['codigo_cedente'] %>-4</td>
             <td>R$</td>
             <td></td>
-			<td class="Ar"><%= addTrailingZeros(boleto['nosso_numero'], 12) %>-<%= boleto['nosso_numero_dv'] %></td>
+			<td class="Ar">09/<%= addTrailingZeros(boleto['nosso_numero'], 10) %>-<%= boleto['nosso_numero_dv'] %></td>
         </tr>
     </table><table class="w666">
         <tr class="ct h13">
@@ -225,7 +226,7 @@
         </tr>
     </table><table class="w666">
         <tr class="ct h13">
-            <td class="w659">Pagador</td>
+            <td class="w659">Sacado</td>
         </tr>
         <tr class="cp h12">
             <td><%- boleto['pagador'] || '' %></td>
@@ -273,7 +274,7 @@
         </tr>
         <tr class="cp h12 rBb">
 			<td><%= boleto['cedente'] %></td>
-			<td class="Ar"><%= boleto['agencia'] %>/<%= boleto['codigo_cedente'] %></td>
+			<td class="Ar"><%= boleto['agencia'] %>-3/<%= boleto['codigo_cedente'] %>-4</td>
         </tr>
     </table><table class="w666">
         <tr class="ct h13">
@@ -287,10 +288,10 @@
         <tr class="cp h12 rBb">
 			<td><%= formatDate(boleto['data_emissao']) %></td>
 			<td><%= addTrailingZeros(boleto['numero_documento'], 9) %></td>
-            <td>DM</td>
-            <td>N</td>
+            <td>ND</td>
+            <td></td>
 			<td><%= formatDate(boleto['data_emissao']) %></td>
-			<td class="Ar"><%= addTrailingZeros(boleto['nosso_numero'], 12) %>-<%= boleto['nosso_numero_dv'] %></td>
+			<td class="Ar">09/<%= addTrailingZeros(boleto['nosso_numero'], 10) %>-<%= boleto['nosso_numero_dv'] %></td>
         </tr>
     </table><table class="w666">
         <tr class="ct h13">
@@ -298,7 +299,7 @@
             <td class="w83">Carteira</td>
             <td class="w53">Espécie</td>
             <td class="w123">Quantidade</td>
-            <td class="w72">(x) Valor</td>
+            <td class="w72">Valor documento</td>
             <td class="w180">(=) Valor documento</td>
         </tr>
         <tr class="cp h12 rBb">
@@ -306,14 +307,14 @@
 			<td class="Al"><%= boleto['carteira'] %></td>
             <td class="Al">R$</td>
             <td></td>
-            <td></td>
+            <td><%= formatAmount(boleto['valor']) %></td>
 			<td class="Ar"><%= formatAmount(boleto['valor']) %></td>
         </tr>
     </table><table class="w666">
         <tr class="rc6">
             <td class="w478">
-                <div class="ctN pL10">Instruções (Texto de responsabilidade do beneficiário)</div>
-				<div class="cpN pL10"><%- boleto['instrucoes'] || '' %></div>
+                <div class="ctN pL10">Instruções (Texto de responsabilidade do cedente)</div>
+				<div class="cpN pL10"><%- boleto['instrucoes_banco'] || '' %></div>
             </td>
             <td class="w186">
                 <div class="t">(-) Desconto / Abatimentos</div>
@@ -330,10 +331,11 @@
         </tr>
     </table><table class="w666">
         <tr class="ct h13">
-            <td class="w659">Pagador</td>
+            <td class="w659">Sacado</td>
         </tr>
         <tr class="cp h12">
-			<td class="At"><%- boleto['pagador'] || '' %></td>
+			<td class="At"><%- boleto['pagador_banco'] || '' %></td>
+            <td class="w238 At"><%- boleto['unidade'] %></td>
         </tr>
     </table><table class="w666">
         <tr class="rBb">
