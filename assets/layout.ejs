@@ -122,6 +122,7 @@
   .mt23{margin-top:23px;}
   .pb4{padding-bottom:14px;}
   .ebc{width:4px;height:440px;border-right:dotted 1px #000000;margin-right:4px;}
+  .padding{padding: 15px}
   <% if (barcode_render_engine == 'bmp') { %>
 	.barcode {
 		background-image: url(data:image/bmp;base64,<%= barcode_data %>);
@@ -150,7 +151,7 @@
   </style>
 </head>
 <body>
-	<div>
+	<div class="padding">
 	<table class="w666">
         <tr class="cpN">
             <td class="At Ac">Instruções de Impressão</td>
