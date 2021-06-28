@@ -146,24 +146,16 @@ module.exports = (bankLogo, bankNumber, linhaDigitavel, barcode, bmpBarcode) => 
     </head>
     <body>
       <div>
-      <table class="w666">
+      <table class="w666 no-print">
             <tr class="cpN">
                 <td class="At Ac">Instruções de Impressão</td>
             </tr>
             <tr class="ti">
                 <td class="At Ac">Imprimir em impressora jato de tinta (ink jet) ou laser em qualidade normal. (Não use modo econômico).<br>Utilize folha A4 (210 x 297 mm) ou Carta (216 x 279 mm) - Corte na linha indicada<br></td>
             </tr>
-            <tr class="ti">
-                <td class="At Ac">
-            <br/>
-            <form>
-              <input class="no-print" type="button" value="Clique aqui para imprimir" onclick="window.print();return false;" />
-            </form>
-          </td>
-            </tr>
         </table><br /><table class="w666">
             <tr>
-                <td class="ctN cut" />
+                <td class="ctN cut no-print" />
             </tr>
             <tr>
                 <td class="cpN Ar">Recibo do Pagador</td>
