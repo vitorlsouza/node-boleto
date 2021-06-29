@@ -16,7 +16,7 @@ exports.barcodeData = function (boleto) {
   var codigoBanco = this.options.codigo;
   var numMoeda = "9";
 
-  var fatorVencimento = fatorVencimento(boleto["data_vencimento"]);
+  var fatorVencimento = formatters.fatorVencimento(boleto["data_vencimento"]);
   var valor = formatters.addTrailingZeros(boleto['valor'], 10)
   var agencia = formatters.addTrailingZeros(boleto['agencia'], 4)
   var carteira = boleto['carteira']
