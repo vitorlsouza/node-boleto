@@ -13,48 +13,23 @@ exports.dvBarra = function (barra) {
 }
 
 exports.barcodeData = function (boleto) {
-  var codigoBanco = this.options.codigo
-  var numMoeda = '9'
-  var fixo = '9' // Numero fixo para a posição 05-05
-  var ios = '0' // IOS - somente para Seguradoras (Se 7% informar 7, limitado 9%) - demais clientes usar 0
+  var codigoBanco = this.options.codigo;
+  var numMoeda = "9";
 
-  var fatorVencimento = formatters.fatorVencimento(moment(boleto['data_vencimento']).utc().format())
-
+  var fatorVencimento = fatorVencimento(boleto["data_vencimento"]);
   var valor = formatters.addTrailingZeros(boleto['valor'], 10)
+  var agencia = formatters.addTrailingZeros(boleto['agencia'], 4)
   var carteira = boleto['carteira']
+  var nossoNumero = carteira + formatters.addTrailingZeros(boleto['nosso_numero'], 11)
   var codigoCedente = formatters.addTrailingZeros(boleto['codigo_cedente'], 7)
 
-  var nossoNumero = formatters.addTrailingZeros(boleto['nosso_numero'], 12) + formatters.mod11(boleto['nosso_numero'])
-
-  var barra = codigoBanco + numMoeda + fatorVencimento + valor + fixo + codigoCedente + nossoNumero + ios + carteira
-
+  var barra = codigoBanco + numMoeda + fatorVencimento + valor + agencia + nossoNumero + codigoCedente + '0'
   var dvBarra = this.dvBarra(barra)
+
   var lineData = barra.substring(0, 4) + dvBarra + barra.substring(4, barra.length)
 
   return lineData
 }
-
-// exports.barcodeData = function (boleto) {
-//   var codigoBanco = this.options.codigo
-//   var numMoeda = '9'
-
-//   var fatorVencimento = formatters.fatorVencimento(moment(boleto['data_vencimento']).utc().format())
-
-//   var agencia = formatters.addTrailingZeros(boleto['agencia'], 4)
-
-//   var valor = formatters.addTrailingZeros(boleto['valor'], 10)
-//   var carteira = boleto['carteira']
-//   var codigoCedente = formatters.addTrailingZeros(boleto['codigo_cedente'], 7)
-
-//   var nossoNumero = carteira + formatters.addTrailingZeros(boleto['nosso_numero'], 11)
-
-//   var barra = codigoBanco + numMoeda + fatorVencimento + valor + agencia + nossoNumero + codigoCedente + '0'
-
-//   var dvBarra = this.dvBarra(barra)
-//   var lineData = barra.substring(0, 4) + dvBarra + barra.substring(4, barra.length)
-
-//   return lineData
-// }
 
 exports.linhaDigitavel = function (barcodeData) {
   // 01-03    -> Código do banco sem o digito
