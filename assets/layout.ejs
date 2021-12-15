@@ -184,7 +184,7 @@
         </tr>
         <tr class="cp h12 At rBb">
 			<td><%= boleto['cedente'] %></td>
-			<td><%= boleto['agencia'] %>-3/<%= boleto['codigo_cedente'] %>-4</td>
+			<td><%= boleto['agencia'] %>-3/<%= boleto['codigo_cedente'] %>-<%= boleto['digito_conta'] %></td>
             <td>R$</td>
             <td></td>
 			<td class="Ar">09/<%= addTrailingZeros(boleto['nosso_numero'], 10) %>-<%= boleto['nosso_numero_dv'] %></td>
@@ -267,7 +267,7 @@
         </tr>
         <tr class="cp h12 rBb">
 			<td><%= boleto['cedente'] %></td>
-			<td class="Ar"><%= boleto['agencia'] %>-3/<%= boleto['codigo_cedente'] %>-4</td>
+			<td class="Ar"><%= boleto['agencia'] %>-3/<%= boleto['codigo_cedente'] %>-<%= boleto['digito_conta'] %></td>
         </tr>
     </table><table class="w666">
         <tr class="ct h13">
